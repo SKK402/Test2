@@ -1,25 +1,16 @@
 pipeline{
     agent any
     stages{
+        tools{
+            maven 'maven'
+        }
         stage('build'){
             steps{
-                echo 'build complete'
+                sh 'mvn clean package'
             }
         }
          stage('test'){
             steps{
-                echo 'test complete'
+                sh 'mvn test'
             }
         }
-         stage('deploy'){
-            steps{
-                echo 'deploy complete'
-            }
-        }
-         stage('checkout'){
-            steps{
-               git url: 'https://github.com/SKK402/demo' , branch: 'main'
-            }
-        }
-    }
-}
